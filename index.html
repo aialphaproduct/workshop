@@ -792,52 +792,50 @@
             document.getElementById("qrImage").src = imgSrc;
             document.getElementById("qrCode").style.display = "block";
         }
-        //
         function openBankingApp() {
             if (!window.qrData) return;
 
             const data = window.qrData;
             const bankId = "970405"; // Mã TPBank
-            const transferInfo = `${data.accountNo}|${bankId}|${data.accountName}|${amount}|${data.addInfo}`;
+            const addInfo = encodeURIComponent(data.addInfo);
 
-            // Tạo deeplink cho các ứng dụng ngân hàng
+            // URL cho thanh toán VietQR
+            const vietQRLink = `https://pay.vietqr.io/${bankId}/${data.accountNo}/-/-${addInfo}`;
+
+            // Deep link cho từng ứng dụng ngân hàng
             const deeplinkSchemes = {
-                tpbank: `tpbankmobile://fund-transfer/vietqr?data=${encodeURIComponent(transferInfo)}`,
-                tpbankQuickPay: `tpbankquickpay://fund-transfer/vietqr?data=${encodeURIComponent(transferInfo)}`,
-                viettelmoney: `viettelmoney://payment?data=${encodeURIComponent(transferInfo)}`,
-                momo: `momo://payment?data=${encodeURIComponent(transferInfo)}`,
-                zalopay: `zalopay://payment?data=${encodeURIComponent(transferInfo)}`
+                tpbank: `tpbankmobile://fund-transfer/vietqr?data=${vietQRLink}`,
+                vietcombank: `vietcombank://qrpay?data=${vietQRLink}`,
+                bidv: `bidv://qrpay?data=${vietQRLink}`,
+                agribank: `agribank://payment?data=${vietQRLink}`,
+                viettelmoney: `viettelmoney://payment?data=${vietQRLink}`,
+                momo: `momo://payment?data=${vietQRLink}`,
+                zalopay: `zalopay://payment?data=${vietQRLink}`
             };
 
-            // URL VietQR dự phòng
-            const vietQRLink = `https://pay.vietqr.io/${bankId}/${data.accountNo}/${amount}/${encodeURIComponent(data.addInfo)}`;
+            // Thử mở ứng dụng ngân hàng
+            let opened = false;
+            for (const scheme of Object.values(deeplinkSchemes)) {
+                if (!opened) {
+                    const iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.src = scheme;
+                    document.body.appendChild(iframe);
 
-            // Thử mở các ứng dụng
-            const tryOpenApp = () => {
-                let opened = false;
-                for (const scheme of Object.values(deeplinkSchemes)) {
-                    if (!opened) {
-                        const iframe = document.createElement('iframe');
-                        iframe.style.display = 'none';
-                        iframe.src = scheme;
-                        document.body.appendChild(iframe);
+                    setTimeout(() => {
+                        document.body.removeChild(iframe);
+                    }, 2000);
 
-                        setTimeout(() => {
-                            document.body.removeChild(iframe);
-                        }, 2000);
-
-                        opened = true;
-                    }
+                    opened = true;
                 }
+            }
 
-                // Chuyển đến trang VietQR nếu không mở được app
-                setTimeout(() => {
-                    window.location.href = vietQRLink;
-                }, 2500);
-            };
-
-            tryOpenApp();
+            // Nếu không mở được app, chuyển đến trang VietQR
+            setTimeout(() => {
+                window.location.href = vietQRLink;
+            }, 2500);
         }
+
         // Hàm loại bỏ dấu tiếng Việt
         function removeVietnameseTones(str) {
             return str.normalize('NFD')
