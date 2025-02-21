@@ -551,24 +551,11 @@
                 <div class="support-icons">
                     🔽🔽🔽
                 </div>
-                <h3>Mã QR của bạn:</h3>
+                <h3>Quét mã QR tại đây:</h3>
                 <img id="qrImage" src="" alt="QR Code" onclick="openBankingApp()"
                     style="max-width: 100%; cursor: pointer; margin: 15px 0;">
-                <p style="text-align: center; margin-bottom: 15px;">Nhấn vào mã QR để mở ứng dụng ngân hàng</p>
-                <button onclick="openBankingApp()"
-                    style="background-color: #00875A; margin-top: 10px; display: flex; align-items: center; justify-content: center;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        style="margin-right: 8px;">
-                        <path d="M19 14V6C19 4.89543 18.1046 4 17 4H7C5.89543 4 5 4.89543 5 6V14" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" />
-                        <path d="M3 15H21V18C21 19.1046 20.1046 20 19 20H5C3.89543 20 3 19.1046 3 18V15Z"
-                            stroke="currentColor" stroke-width="2" />
-                        <path d="M7 8H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                        <path d="M7 12H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                        <path d="M9 15H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                    </svg>
-                    Thanh toán ngay
-                </button>
+                <p style="text-align: center; margin-bottom: 15px;">Mọi sự đóng góp của bạn là nguồn động lực để chúng tôi không ngừng phát triển và lan tỏa kiến thức!</p>
+
             </div>
 
             <!-- Liên hệ Facebook -->
@@ -661,53 +648,6 @@
         });
 
         // Loại bỏ dấu tiếng Việt
-        // Hàm mở ứng dụng ngân hàng
-        function openBankingApp() {
-            if (!window.qrData) return;
-
-            const data = window.qrData;
-            const bankId = "970405"; // Mã TPBank
-            const amount = "99000";
-            const transferInfo = `${data.accountNo}|${bankId}|${data.accountName}|${amount}|${data.addInfo}`;
-
-            // Tạo deeplink cho các ứng dụng ngân hàng
-            const deeplinkSchemes = {
-                tpbank: `tpbankmobile://fund-transfer/vietqr?data=${encodeURIComponent(transferInfo)}`,
-                tpbankQuickPay: `tpbankquickpay://fund-transfer/vietqr?data=${encodeURIComponent(transferInfo)}`,
-                viettelmoney: `viettelmoney://payment?data=${encodeURIComponent(transferInfo)}`,
-                momo: `momo://payment?data=${encodeURIComponent(transferInfo)}`,
-                zalopay: `zalopay://payment?data=${encodeURIComponent(transferInfo)}`
-            };
-
-            // URL VietQR dự phòng
-            const vietQRLink = `https://pay.vietqr.io/${bankId}/${data.accountNo}/${amount}/${encodeURIComponent(data.addInfo)}`;
-
-            // Thử mở các ứng dụng
-            const tryOpenApp = () => {
-                let opened = false;
-                for (const scheme of Object.values(deeplinkSchemes)) {
-                    if (!opened) {
-                        const iframe = document.createElement('iframe');
-                        iframe.style.display = 'none';
-                        iframe.src = scheme;
-                        document.body.appendChild(iframe);
-
-                        setTimeout(() => {
-                            document.body.removeChild(iframe);
-                        }, 2000);
-
-                        opened = true;
-                    }
-                }
-
-                // Chuyển đến trang VietQR nếu không mở được app
-                setTimeout(() => {
-                    window.location.href = vietQRLink;
-                }, 2500);
-            };
-
-            tryOpenApp();
-        }
 
         function removeVietnameseTones(str) {
             return str.normalize('NFD')
@@ -792,50 +732,7 @@
             document.getElementById("qrImage").src = imgSrc;
             document.getElementById("qrCode").style.display = "block";
         }
-        function openBankingApp() {
-            if (!window.qrData) return;
-
-            const data = window.qrData;
-            const bankId = "970405"; // Mã TPBank
-            const addInfo = encodeURIComponent(data.addInfo);
-
-            // URL cho thanh toán VietQR
-            const vietQRLink = `https://pay.vietqr.io/${bankId}/${data.accountNo}/-/-${addInfo}`;
-
-            // Deep link cho từng ứng dụng ngân hàng
-            const deeplinkSchemes = {
-                tpbank: `tpbankmobile://fund-transfer/vietqr?data=${vietQRLink}`,
-                vietcombank: `vietcombank://qrpay?data=${vietQRLink}`,
-                bidv: `bidv://qrpay?data=${vietQRLink}`,
-                agribank: `agribank://payment?data=${vietQRLink}`,
-                viettelmoney: `viettelmoney://payment?data=${vietQRLink}`,
-                momo: `momo://payment?data=${vietQRLink}`,
-                zalopay: `zalopay://payment?data=${vietQRLink}`
-            };
-
-            // Thử mở ứng dụng ngân hàng
-            let opened = false;
-            for (const scheme of Object.values(deeplinkSchemes)) {
-                if (!opened) {
-                    const iframe = document.createElement('iframe');
-                    iframe.style.display = 'none';
-                    iframe.src = scheme;
-                    document.body.appendChild(iframe);
-
-                    setTimeout(() => {
-                        document.body.removeChild(iframe);
-                    }, 2000);
-
-                    opened = true;
-                }
-            }
-
-            // Nếu không mở được app, chuyển đến trang VietQR
-            setTimeout(() => {
-                window.location.href = vietQRLink;
-            }, 2500);
-        }
-
+      
         // Hàm loại bỏ dấu tiếng Việt
         function removeVietnameseTones(str) {
             return str.normalize('NFD')
@@ -844,8 +741,6 @@
                 .replace(/Đ/g, 'D')
                 .toUpperCase();
         }
-
-    </script>
 
     </script>
     <script>
