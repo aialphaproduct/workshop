@@ -677,11 +677,7 @@
                 alert('Email chưa đúng định dạng!');
                 return;
             }
-            let imgSrc = `https://img.vietqr.io/image/TPB-03720656601-compact2.jpg?addInfo=${encodeURIComponent(addInfo)}&accountName=KIEU%20TAN%20THANH`;
-
-            // Hiển thị QR
-            document.getElementById("qrImage").src = imgSrc;
-            document.getElementById("qrCode").style.display = "block";
+            
             // Lấy thời gian hiện tại ở múi giờ Việt Nam (UTC+7)
             const timeZone = 'Asia/Ho_Chi_Minh';
             const currentTime = new Date().toLocaleString('vi-VN', { timeZone: timeZone });
