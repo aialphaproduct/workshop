@@ -70,20 +70,20 @@
         align-items: center;
         justify-content: space-between;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 5px 5px 10px #d1d1d1, 
-                    -5px -5px 10px #ffffff;
+        box-shadow: 5px 5px 10px #d1d1d1,
+            -5px -5px 10px #ffffff;
     }
 
     .content-button:hover {
         transform: translateY(-2px);
         box-shadow: 6px 6px 12px #b8b8b8,
-                    -6px -6px 12px #ffffff;
+            -6px -6px 12px #ffffff;
     }
 
     .content-button.active {
         background: linear-gradient(145deg, #e6f3ff, #ffffff);
         box-shadow: inset 4px 4px 8px #d1d1d1,
-                    inset -4px -4px 8px #ffffff;
+            inset -4px -4px 8px #ffffff;
     }
 
     /* Container cho nội dung bung ra */
@@ -104,7 +104,7 @@
         opacity: 1;
         transform: scaleY(1);
         box-shadow: 4px 4px 8px #d1d1d1,
-                    -4px -4px 8px #ffffff;
+            -4px -4px 8px #ffffff;
     }
 
     .content-inner {
@@ -213,6 +213,7 @@
             transform: translateY(-20px);
             opacity: 0;
         }
+
         to {
             transform: translateY(0);
             opacity: 1;
@@ -224,6 +225,7 @@
             transform: translateY(-10px);
             opacity: 0;
         }
+
         to {
             transform: translateY(0);
             opacity: 1;
@@ -242,7 +244,7 @@
         .container {
             gap: 20px;
         }
-        
+
         .form-container {
             width: 350px;
         }
@@ -321,6 +323,7 @@
 
     /* Thêm dark mode support */
     @media (prefers-color-scheme: dark) {
+
         .content-section,
         .form-container {
             background: #1a1a1a;
@@ -349,22 +352,54 @@
         .faq-question {
             color: #fff;
         }
+
+        /* Chỉnh kiểu cho thông báo cảm ơn */
+        .thank-you-message {
+            font-size: 20px;
+            /* Tăng kích thước chữ */
+            font-weight: bold;
+            /* Làm đậm */
+            text-align: center;
+            /* Căn giữa */
+            margin-bottom: 10px;
+            /* Khoảng cách phía dưới */
+        }
+
+        /* Chỉnh kiểu cho nội dung hỗ trợ */
+        .support-message {
+            font-size: 16px;
+            /* Nhỏ hơn tiêu đề */
+            font-weight: normal;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* Chỉnh kiểu cho phần biểu tượng */
+        .support-icons {
+            font-size: 24px;
+            /* Làm cho icon to hơn */
+            text-align: center;
+            display: block;
+            margin: 10px auto;
+            /* Căn giữa */
+        }
+
+        /* Chỉnh kiểu cho tiêu đề "Mã QR của bạn:" */
+
     }
 </style>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AL AGENTS AUTOMATION</title>
-    <link rel="icon" type="image/jpeg" href="https://i.imgur.com/cS1sOWJ.jpeg">
+    <title>Nội Dung Khóa Học</title>
 </head>
-
 
 <body>
     <div class="container">
         <div class="main-content">
             <div class="banner-container">
-                <img class="banner" src="https://img.upanh.tv/2025/02/21/z6337807302958_b777cf82cc0de9b74a1399ed2267d809.jpg" alt="Banner">
+                <img class="banner" src="https://img.upanh.tv/2025/02/21/bannerworkshop.jpg" alt="Banner">
             </div>
 
             <div class="content-section">
@@ -484,43 +519,65 @@
         </div>
 
         <div class="form-container">
-            <h2>Form Đăng Ký</h2>
-            <div class="form-group">
-                <label for="fullName">Họ và Tên:</label>
-                <input type="text" id="fullName" placeholder="Nhập họ tên" required>
+            <div class="form-dang-ki">
+                <h2>Đăng kí khóa học ngay tại đây</h2>
+                <p>Quý khách vui lòng điền thông tin bên dưới</p>
+                <div class="form-group">
+                    <label for="fullName">Họ và Tên:</label>
+                    <input type="text" id="fullName" placeholder="Nhập họ tên" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số điện thoại:</label>
+                    <input type="tel" id="phone" placeholder="Nhập số điện thoại" maxlength="11" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" placeholder="Nhập email" required>
+
+                </div>
+                <button onclick="register()">Đăng Ký Ngay</button>
             </div>
-            <div class="form-group">
-                <label for="phone">Số điện thoại:</label>
-                <input type="tel" id="phone" placeholder="Nhập số điện thoại" maxlength="10" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" placeholder="Nhập email của bạn" required>
-            </div>
-            <button onclick="register()">Đăng Ký Ngay</button>
-            
             <!-- Phần QR và chuyển khoản -->
             <div id="qrCode" style="display: none;">
-                <h3>Xác nhận chuyển khoản </h3>
-                <img id="qrImage" src="" alt="QR Code" onclick="openBankingApp()" style="max-width: 100%; cursor: pointer; margin: 15px 0;">
+                <h3>Đăng kí thành công</h3>
+                <div class="thank-you-message">
+                    Cảm ơn bạn đã đăng kí tham gia workshop của chúng tôi.
+                </div>
+
+                <div class="support-message">
+                    Nếu bạn thấy workshop hay và có ích, bạn có thể ủng hộ chúng tôi qua thông tin bên dưới
+                </div>
+
+                <div class="support-icons">
+                    🔽🔽🔽
+                </div>
+                <h3>Mã QR của bạn:</h3>
+                <img id="qrImage" src="" alt="QR Code" onclick="openBankingApp()"
+                    style="max-width: 100%; cursor: pointer; margin: 15px 0;">
                 <p style="text-align: center; margin-bottom: 15px;">Nhấn vào mã QR để mở ứng dụng ngân hàng</p>
-                <button onclick="openBankingApp()" style="background-color: #00875A; margin-top: 10px; display: flex; align-items: center; justify-content: center;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
-                        <path d="M19 14V6C19 4.89543 18.1046 4 17 4H7C5.89543 4 5 4.89543 5 6V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M3 15H21V18C21 19.1046 20.1046 20 19 20H5C3.89543 20 3 19.1046 3 18V15Z" stroke="currentColor" stroke-width="2"/>
-                        <path d="M7 8H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M7 12H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M9 15H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <button onclick="openBankingApp()"
+                    style="background-color: #00875A; margin-top: 10px; display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        style="margin-right: 8px;">
+                        <path d="M19 14V6C19 4.89543 18.1046 4 17 4H7C5.89543 4 5 4.89543 5 6V14" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" />
+                        <path d="M3 15H21V18C21 19.1046 20.1046 20 19 20H5C3.89543 20 3 19.1046 3 18V15Z"
+                            stroke="currentColor" stroke-width="2" />
+                        <path d="M7 8H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <path d="M7 12H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <path d="M9 15H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                     </svg>
-                    Chuyển tiền ngay
+                    Thanh toán ngay
                 </button>
             </div>
 
             <!-- Liên hệ Facebook -->
             <div style="margin-top: 25px; text-align: center; padding-top: 20px; border-top: 1px solid #eee;">
-                <a href="https://facebook.com/alphagiaiphapkhonggiansangtao" target="_blank" style="display: inline-flex; align-items: center; color: #1877f2; text-decoration: none; font-weight: bold; padding: 10px 20px; border-radius: 25px; background-color: #e7f3ff;">
+                <a href="https://facebook.com/alphagiaiphapkhonggiansangtao" target="_blank"
+                    style="display: inline-flex; align-items: center; color: #1877f2; text-decoration: none; font-weight: bold; padding: 10px 20px; border-radius: 25px; background-color: #e7f3ff;">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="#1877f2" style="margin-right: 8px;">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        <path
+                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                     </svg>
                     Liên hệ qua Facebook
                 </a>
@@ -531,20 +588,20 @@
     <script>
         // Biến lưu trữ dữ liệu QR
         window.qrData = null;
-        
+
         // Xử lý các nút bấm
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const buttons = document.querySelectorAll('.content-button');
-            
+
             buttons.forEach(button => {
                 button.addEventListener('click', () => {
                     // Toggle active class cho nút
                     button.classList.toggle('active');
-                    
+
                     // Tìm và toggle phần nội dung
                     const content = button.nextElementSibling;
                     content.classList.toggle('active');
-                    
+
                     // Đóng các phần khác nếu đang mở
                     buttons.forEach(otherButton => {
                         if (otherButton !== button) {
@@ -560,32 +617,38 @@
         function register() {
             const fullName = document.getElementById('fullName').value.trim();
             const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
 
-            if (!fullName || !phone) {
+            if (!fullName || !phone || !email) {
                 alert('Vui lòng nhập đầy đủ thông tin!');
                 return;
             }
 
-            if (phone.length !== 10) {
-                alert('Số điện thoại phải có 10 chữ số!');
+            if (phone.length < 10 || phone.length > 11) {
+                alert('Số điện thoại phải có từ 10 đến 11 chữ số!');
                 return;
             }
-
+            if (!email.includes('@')) {
+                alert('Email chưa đúng định dạng!');
+                return;
+            }
             // Tạo QR code với thông tin người đăng ký
             let nameWithoutTones = removeVietnameseTones(fullName);
-            let addInfo = `${phone}-" WSAIAgent"`;
+            let addInfo = `${phone}-"WSAIAgent"`;
 
             // Lưu thông tin QR để sử dụng sau này
             window.qrData = {
                 accountNo: "03720656601",
                 accountName: "KIEU TAN THANH",
                 acqId: "970405",  // Mã ngân hàng TPBank
-                amount: "99000",
+                // amount: "99000",
                 addInfo: addInfo
             };
 
-            // Tạo URL QR
-            let imgSrc = `https://img.vietqr.io/image/TPB-03720656601-compact2.jpg?amount=99000&addInfo=${encodeURIComponent(addInfo)}&accountName=KIEU%20TAN%20THANH`;
+            // // Tạo URL QR
+            // let imgSrc = `https://img.vietqr.io/image/TPB-03720656601-compact2.jpg?amount=99000&addInfo=${encodeURIComponent(addInfo)}&accountName=KIEU%20TAN%20THANH`;
+            // Tạo URL QR KHÔNG có số tiền mặc định
+            let imgSrc = `https://img.vietqr.io/image/TPB-03720656601-compact2.jpg?addInfo=${encodeURIComponent(addInfo)}&accountName=KIEU%20TAN%20THANH`;
 
             // Hiển thị QR
             document.getElementById("qrImage").src = imgSrc;
@@ -593,7 +656,7 @@
         }
 
         // Chỉ cho phép nhập số vào trường điện thoại
-        document.getElementById('phone').addEventListener('input', function(e) {
+        document.getElementById('phone').addEventListener('input', function (e) {
             this.value = this.value.replace(/\D/g, '');
         });
 
@@ -654,142 +717,169 @@
                 .toUpperCase();
         }
         // Hàm đăng ký gửi dữ liệu lên Google Sheets và gửi email ngầm
-// Hàm đăng ký gửi dữ liệu lên Google Sheets và tạo mã QR
-// Hàm đăng ký gửi dữ liệu lên Google Sheets và tạo mã QR
-function register() {
-    // Lấy thông tin từ form và loại bỏ khoảng trắng thừa
-    const fullName = document.getElementById('fullName').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const email = document.getElementById('email').value.trim(); // Lấy email từ form
+        // Hàm đăng ký gửi dữ liệu lên Google Sheets và tạo mã QR
+        // Hàm đăng ký gửi dữ liệu lên Google Sheets và tạo mã QR
+        function register() {
+            const fullName = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
 
-    // Kiểm tra nếu thông tin chưa đầy đủ
-    if (!fullName || !phone || !email) {
-        alert('Vui lòng nhập đầy đủ thông tin!');
-        return;
-    }
+            if (!fullName || !phone || !email) {
+                alert('Vui lòng nhập đầy đủ thông tin!');
+                return;
+            }
 
-    // Kiểm tra số điện thoại có đúng định dạng 10 chữ số không
-    if (phone.length !== 10) {
-        alert('Số điện thoại phải có 10 chữ số!');
-        return;
-    }
+            if (phone.length < 10 || phone.length > 11) {
+                alert('Số điện thoại phải có từ 10 đến 11 chữ số!');
+                return;
+            }
+            if (!email.includes('@')) {
+                alert('Email chưa đúng định dạng!');
+                return;
+            }
 
-    // Kiểm tra định dạng email hợp lệ
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-        alert('Email không hợp lệ!');
-        return;
-    }
+            // Lấy thời gian hiện tại ở múi giờ Việt Nam (UTC+7)
+            const timeZone = 'Asia/Ho_Chi_Minh';
+            const currentTime = new Date().toLocaleString('vi-VN', { timeZone: timeZone });
 
-    // Lấy thời gian hiện tại ở múi giờ Việt Nam (UTC+7)
-    const timeZone = 'Asia/Ho_Chi_Minh';
-    const currentTime = new Date().toLocaleString('vi-VN', { timeZone: timeZone });
+            // Gửi dữ liệu lên Google Sheets thông qua Google Apps Script
+            const url = 'https://script.google.com/macros/s/AKfycbwhvPDRO7kNDNtjkYqUo9UvvmRuvR8ZsfWZOu9YJMVbSXRQDXLOVClNgaYvreA8kWVWDg/exec';
 
-    // Tạo mã QR ngay lập tức khi nhấn Đăng Ký
-    generateQRCode(fullName, phone);
+            const data = {
+                'fullName': fullName,
+                'phone': phone,
+                'email': email,
+                'registrationTime': currentTime
+            };
 
-    // Thực hiện thông báo giả "Đăng ký thành công"
-    showFakeSuccessMessage();
+            // Gửi dữ liệu bằng phương thức POST mà không làm gián đoạn giao diện
+            fetch(url, {
+                method: 'POST',
+                body: new URLSearchParams(data)
+            })
+                .then(response => response.text())
+                .then(result => {
+                    console.log(result); // Log kết quả để kiểm tra
+                })
+                .catch(error => {
+                    console.error('Lỗi khi gửi dữ liệu:', error);
+                });
 
-    // URL của Google Apps Script (đảm bảo đây là URL chính xác)
-    const url = 'https://script.google.com/macros/s/AKfycbwKxLVThny_JASNx2qgFEkL87S38wQBUCTnlJKX1oDlwTiujazPOrUrJW4ujSsORslg8g/exec'; // Thay YOUR_SCRIPT_URL với URL của Google Apps Script
+            // Tạo mã QR sau khi đăng ký
+            generateQRCode(fullName, phone);
 
-    // Dữ liệu sẽ gửi lên Google Sheets (bao gồm tên, số điện thoại, email và thời gian đăng ký)
-    const data = {
-        'fullName': fullName,
-        'phone': phone,
-        'email': email,           // Thêm email vào dữ liệu
-        'registrationTime': currentTime // Truyền thời gian vào Google Sheets
-    };
+            // Ẩn phần nhập thông tin sau khi đăng ký thành công
+            document.querySelector('.form-dang-ki').style.display = 'none'; // Ẩn toàn bộ form nhập
 
-    // Gửi dữ liệu bằng phương thức POST mà không làm gián đoạn giao diện
-    fetch(url, {
-        method: 'POST',
-        body: new URLSearchParams(data) // Dữ liệu được mã hóa theo định dạng URL search parameters
-    })
-    .then(response => response.text()) // Đọc kết quả phản hồi từ server
-    .then(result => {
-        console.log(result); // Log kết quả để kiểm tra
-    })
-    .catch(error => {
-        console.error('Lỗi khi gửi dữ liệu:', error); // Nếu có lỗi, hiển thị thông báo lỗi
-    });
-}
+            // Hiển thị phần QR Code
+            document.getElementById("qrCode").style.display = "block";
+        }
+        // Hàm tạo QR Code không hiển thị số tiền
+        function generateQRCode(fullName, phone) {
+            let nameWithoutTones = removeVietnameseTones(fullName);
+            let addInfo = `${phone}-"WSAIAgent"`;
 
-// Hàm tạo QR code sau khi đăng ký
-function generateQRCode(fullName, phone) {
-    let nameWithoutTones = removeVietnameseTones(fullName);
-    let addInfo = `${phone}-"WSAIAgent"`;
+            window.qrData = {
+                accountNo: "03720656601",
+                accountName: "KIEU TAN THANH",
+                acqId: "970405",
+                addInfo: addInfo
+            };
 
-    window.qrData = {
-        accountNo: "03720656601",
-        accountName: "KIEU TAN THANH",
-        acqId: "970405",  
-        amount: "99000",
-        addInfo: addInfo
-    };
+            // Tạo URL không chứa amount để tránh hiển thị số tiền
+            let imgSrc = `https://img.vietqr.io/image/TPB-03720656601-compact2.jpg?addInfo=${encodeURIComponent(addInfo)}&accountName=KIEU%20TAN%20THANH`;
 
-    let imgSrc = `https://img.vietqr.io/image/TPB-03720656601-compact2.jpg?amount=99000&addInfo=${encodeURIComponent(addInfo)}&accountName=KIEU%20TAN%20THANH`;
+            document.getElementById("qrImage").src = imgSrc;
+            document.getElementById("qrCode").style.display = "block";
+        }
+        //
+        function openBankingApp() {
+            if (!window.qrData) return;
 
-    document.getElementById("qrImage").src = imgSrc;
-    document.getElementById("qrCode").style.display = "block";
-}
+            const data = window.qrData;
+            const bankId = "970405"; // Mã TPBank
+            const transferInfo = `${data.accountNo}|${bankId}|${data.accountName}|${amount}|${data.addInfo}`;
 
-// Hàm hiển thị thông báo giả
-function showFakeSuccessMessage() {
-    // Tạo một phần tử thông báo giả
-    const fakeMessage = document.createElement('div');
-    fakeMessage.classList.add('fake-success-message');
-    fakeMessage.innerText = 'Đăng ký thành công! Mã QR đã được tạo.';
+            // Tạo deeplink cho các ứng dụng ngân hàng
+            const deeplinkSchemes = {
+                tpbank: `tpbankmobile://fund-transfer/vietqr?data=${encodeURIComponent(transferInfo)}`,
+                tpbankQuickPay: `tpbankquickpay://fund-transfer/vietqr?data=${encodeURIComponent(transferInfo)}`,
+                viettelmoney: `viettelmoney://payment?data=${encodeURIComponent(transferInfo)}`,
+                momo: `momo://payment?data=${encodeURIComponent(transferInfo)}`,
+                zalopay: `zalopay://payment?data=${encodeURIComponent(transferInfo)}`
+            };
 
-    // Thêm vào body hoặc một container nào đó
-    document.body.appendChild(fakeMessage);
+            // URL VietQR dự phòng
+            const vietQRLink = `https://pay.vietqr.io/${bankId}/${data.accountNo}/${amount}/${encodeURIComponent(data.addInfo)}`;
 
-    // Sau 2 giây, ẩn thông báo
-    setTimeout(() => {
-        fakeMessage.style.display = 'none';
-    }, 2000);  // 2 giây
-}
+            // Thử mở các ứng dụng
+            const tryOpenApp = () => {
+                let opened = false;
+                for (const scheme of Object.values(deeplinkSchemes)) {
+                    if (!opened) {
+                        const iframe = document.createElement('iframe');
+                        iframe.style.display = 'none';
+                        iframe.src = scheme;
+                        document.body.appendChild(iframe);
 
-// Hàm loại bỏ dấu tiếng Việt
-function removeVietnameseTones(str) {
-    return str.normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/đ/g, 'd')
-        .replace(/Đ/g, 'D')
-        .toUpperCase();
-}
+                        setTimeout(() => {
+                            document.body.removeChild(iframe);
+                        }, 2000);
+
+                        opened = true;
+                    }
+                }
+
+                // Chuyển đến trang VietQR nếu không mở được app
+                setTimeout(() => {
+                    window.location.href = vietQRLink;
+                }, 2500);
+            };
+
+            tryOpenApp();
+        }
+        // Hàm loại bỏ dấu tiếng Việt
+        function removeVietnameseTones(str) {
+            return str.normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/đ/g, 'd')
+                .replace(/Đ/g, 'D')
+                .toUpperCase();
+        }
 
     </script>
-   <script>
-    // Lắng nghe sự thay đổi dữ liệu trong form
-    document.getElementById("fullName").addEventListener("input", function() {
-      console.log("Họ và Tên thay đổi: ", this.value);
-      // Logic để load dữ liệu (hoặc thực hiện các hành động khác)
-      loadData();
-    });
-  
-    document.getElementById("phone").addEventListener("input", function() {
-      console.log("Số điện thoại thay đổi: ", this.value);
-      // Logic để load dữ liệu (hoặc thực hiện các hành động khác)
-      loadData();
-    });
-  
-    document.getElementById("email").addEventListener("input", function() {
-      console.log("Email thay đổi: ", this.value);
-      // Logic để load dữ liệu (hoặc thực hiện các hành động khác)
-      loadData();
-    });
-  
-    // Hàm load dữ liệu
-    function loadData() {
-      // Ví dụ logic load dữ liệu
-      console.log("Dữ liệu đã được load!");
-      // Bạn có thể cho phép ẩn/hiện hình ảnh tại đây
-      document.getElementById("qrCode").style.display = "none"; // Ẩn ảnh tin
-    }
-  </script>
-  
-    
+
+    </script>
+    <script>
+        // Lắng nghe sự thay đổi dữ liệu trong form
+        document.getElementById("fullName").addEventListener("input", function () {
+            console.log("Họ và Tên thay đổi: ", this.value);
+            // Logic để load dữ liệu (hoặc thực hiện các hành động khác)
+            loadData();
+        });
+
+        document.getElementById("phone").addEventListener("input", function () {
+            console.log("Số điện thoại thay đổi: ", this.value);
+            // Logic để load dữ liệu (hoặc thực hiện các hành động khác)
+            loadData();
+        });
+
+        document.getElementById("email").addEventListener("input", function () {
+            console.log("Email thay đổi: ", this.value);
+            // Logic để load dữ liệu (hoặc thực hiện các hành động khác)
+            loadData();
+        });
+
+        // Hàm load dữ liệu
+        function loadData() {
+            // Ví dụ logic load dữ liệu
+            console.log("Dữ liệu đã được load!");
+            // Bạn có thể cho phép ẩn/hiện hình ảnh tại đây
+            document.getElementById("qrCode").style.display = "none"; // Ẩn ảnh tin
+        }
+    </script>
+
+
 </body>
+
 </html>
